@@ -23,10 +23,10 @@ export class InMemorySnacksRepository implements SnacksRepository{
 	
 	async create(data: Prisma.SnackUncheckedCreateInput) {
 		const snack = {
-			id: randomUUID(),
+			id: data.id ?? randomUUID(),
 			name: data.name,
-			description: data.description,
-			date_time: data.date_time,
+			description: data.description ?? null,
+			date_time: data.date_time ? new Date(data.date_time) : new Date(),
 			on_diete: data.on_diete,
 			created_at: new Date(),
 			user_id: data.user_id
@@ -34,6 +34,16 @@ export class InMemorySnacksRepository implements SnacksRepository{
 		
 		this.items.push(snack)
 		
+		return snack
+	}
+
+	async save(snack: Snack) {
+		const snackIndex = this.items.findIndex(item => item.id === snack.id)
+
+		if ( snackIndex >= 0 ) {
+			this.items[snackIndex] = snack
+		}
+
 		return snack
 	}
 }
