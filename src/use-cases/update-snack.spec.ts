@@ -26,7 +26,7 @@ describe('Update Snack Use Case', () => {
 			name: 'new-snack',
 			dateTime: snack.date_time,
 			description: snack.description ?? '',
-			onDiete: snack.on_diete
+			onDiet: snack.on_diete
 		})
 
 		const snackUpdated = await snacksRepository.findById('snack-01')

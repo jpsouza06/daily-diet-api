@@ -7,7 +7,7 @@ interface UpdateSnackUseCaseRequest {
    name: string;
    description: string;
    dateTime: Date;
-   onDiete: boolean;
+   onDiet: boolean;
 }
 
 interface UpdateSnackUseCaseResponse {
@@ -24,7 +24,7 @@ export class UpdateSnackUseCase {
 		name,
 		description,
 		dateTime,
-		onDiete,
+		onDiet,
 	}: UpdateSnackUseCaseRequest): Promise<UpdateSnackUseCaseResponse> {
 		let snack = await this.snacksRepository.findById(snackId)
 
@@ -37,7 +37,7 @@ export class UpdateSnackUseCase {
 			name,
 			description,
 			date_time: dateTime,
-			on_diete: onDiete
+			on_diete: onDiet
 		}
 
 		await this.snacksRepository.save(snack)

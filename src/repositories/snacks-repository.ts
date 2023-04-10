@@ -5,4 +5,5 @@ export interface SnacksRepository {
    findManyByUserId(userId: string, page: number): Promise<Snack[] | null>
    create(data: Prisma.SnackUncheckedCreateInput): Promise<Snack>
    save(snack: Snack): Promise<Snack>
+   delete(id: string): Promise<Snack> 
 }
