@@ -29,7 +29,7 @@ export class InMemorySnacksRepository implements SnacksRepository{
 			date_time: data.date_time ? new Date(data.date_time) : new Date(),
 			on_diete: data.on_diete,
 			created_at: new Date(),
-			updated_at: null,
+			updated_at: data.updated_at ? new Date(data.updated_at) : new Date(),
 			user_id: data.user_id
 		}
 		
