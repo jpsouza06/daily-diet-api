@@ -1,15 +1,15 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 import { InMemorySnacksRepository } from '@/repositories/in-memory/in-memory-snacks-repository'
-import { GetSnacksUseCase } from './get-snack'
+import { GetSnackUseCase } from './get-snack'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 let snacksRepository: InMemorySnacksRepository
-let sut: GetSnacksUseCase
+let sut: GetSnackUseCase
 
 describe('Get Snack Use Case', () => {
 	beforeEach(() => {
 		snacksRepository = new InMemorySnacksRepository()
-		sut = new GetSnacksUseCase(snacksRepository)
+		sut = new GetSnackUseCase(snacksRepository)
 	})
 
 	it('should be able to get a snack', async () => {

@@ -2,22 +2,22 @@ import { SnacksRepository } from '@/repositories/snacks-repository'
 import { Snack } from '@prisma/client'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
-interface GetSnacksUseCaseRequest {
+interface GetSnackUseCaseRequest {
    snackId: string
 }
 
-interface GetSnacksUseCaseResponse {
+interface GetSnackUseCaseResponse {
    snack: Snack
 }
 
-export class GetSnacksUseCase {
+export class GetSnackUseCase {
 	constructor(
       private snacksRepository: SnacksRepository
 	) {}
 
 	async execute({
 		snackId,
-	}: GetSnacksUseCaseRequest): Promise<GetSnacksUseCaseResponse> {
+	}: GetSnackUseCaseRequest): Promise<GetSnackUseCaseResponse> {
 		const snack = await this.snacksRepository.findById(snackId)
 
 		if(!snack) {
