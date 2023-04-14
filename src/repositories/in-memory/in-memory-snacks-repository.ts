@@ -110,8 +110,8 @@ export class InMemorySnacksRepository implements SnacksRepository{
 		return snack
 	}
 
-	async delete(id: string) {
-		const snack = this.items.splice(parseInt(id))
+	async delete(data: Snack) {
+		const snack = this.items.splice(parseInt(data.id))
 
 		return snack[0]
 	}
