@@ -4,7 +4,7 @@ Daily Diet Api
 
 ## RFs
 - [x]  Deve ser possível criar um usuário;
-- [] Deve ser possível identificar o usuário entre as requisiçoes;
+- [ ] Deve ser possível identificar o usuário entre as requisiçoes;
 - [x]  Deve ser possível recuperar as métricas de um usuário;
       - [x] Quantidade total de refeições registradas
       - [x] Quantidade total de refeições dentro da dieta
@@ -23,5 +23,5 @@ Daily Diet Api
 - [x]  Deve ser possível visualizar uma única refeição;
 ## RNs
 
-- []  O usuário só pode visualizar, editar e apagar as refeições o qual ele criou;
+- [x]  O usuário só pode visualizar, editar e apagar as refeições o qual ele criou;
 
