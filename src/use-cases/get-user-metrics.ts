@@ -1,8 +1,10 @@
 import { SnacksRepository } from '@/repositories/snacks-repository'
+import { getBestSnackSequencePerDayWithinDiet } from '@/utils/get-best-snack-sequence-per-day-within-diet'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
 interface GetUserMetricsUseCaseRequest {
    userId: string
+	page: number
 }
 
 interface GetUserMetricsUseCaseResponse {
@@ -19,6 +21,7 @@ export class GetUserMetricsUseCase {
 
 	async execute({
 		userId,
+		page
 	}: GetUserMetricsUseCaseRequest): Promise<GetUserMetricsUseCaseResponse> {
 		const snacksCount = await this.snacksRepository.countByUserId(userId)
 
@@ -39,12 +42,16 @@ export class GetUserMetricsUseCase {
 		if(!snacksOffDietCount) {
 			throw new ResourceNotFoundError()
 		}
-		const bestSnackSequencePerDayWithinDiet = 
-         await this.snacksRepository.findBestSnackSequencePerDayWithinDiet(userId)
 
-		if(!bestSnackSequencePerDayWithinDiet) {
+		const snacksOnDiet = 
+			await this.snacksRepository.findManySnacksOnDiet(userId, page)
+		
+		if(!snacksOnDiet) {
 			throw new ResourceNotFoundError()
 		}
+
+		const bestSnackSequencePerDayWithinDiet = 
+			getBestSnackSequencePerDayWithinDiet(snacksOnDiet)
 
 		return {
 			snacksCount,

@@ -68,7 +68,8 @@ describe('Get User Metrics Use Case', () => {
 			snacksOffDietCount, 
 			snacksOnDietCount 
 		} = await sut.execute({
-			userId: '12345'
+			userId: '12345',
+			page: 1
 		})
       
 		expect(bestSnackSequencePerDayWithinDiet).toEqual(2)

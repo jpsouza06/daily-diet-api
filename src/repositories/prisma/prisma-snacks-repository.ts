@@ -23,6 +23,18 @@ export class PrismaSnacksRepository implements SnacksRepository{
 
 		return snacks
 	}
+	async findManySnacksOnDiet(userId: string, page: number) {
+		const snacksOnDiet = await prisma.snack.findMany({
+			where: {
+				user_id : userId,
+				on_diete: true,
+			},
+			take: 20,
+			skip: (page - 1) * 20,
+		})
+
+		return snacksOnDiet
+	}
 	async countSnacksOnDietByUserId(userId: string){
 		const countSnacks = await prisma.snack.count({
 			where: {
@@ -43,8 +55,16 @@ export class PrismaSnacksRepository implements SnacksRepository{
 
 		return countSnacks
 	}
-	findBestSnackSequencePerDayWithinDiet(userId: string): Promise<number> {
-		throw new Error('Method not implemented.')
+	async findBestSnackSequencePerDayWithinDiet(userId: string) {
+		const snacksOnDiet = await prisma.snack.findMany({
+			where: {
+				user_id : userId,
+				on_diete: true,
+			}
+		})
+
+		snacksOnDiet.sort
+
 	}
 	async countByUserId(userId: string) {
 		const countSnacks = await prisma.snack.count({
