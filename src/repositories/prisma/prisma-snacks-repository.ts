@@ -27,7 +27,7 @@ export class PrismaSnacksRepository implements SnacksRepository{
 		const snacksOnDiet = await prisma.snack.findMany({
 			where: {
 				user_id : userId,
-				on_diete: true,
+				on_diet: true,
 			},
 			take: 20,
 			skip: (page - 1) * 20,
@@ -39,7 +39,7 @@ export class PrismaSnacksRepository implements SnacksRepository{
 		const countSnacks = await prisma.snack.count({
 			where: {
 				user_id : userId,
-				on_diete: true,
+				on_diet: true,
 			}
 		})
 
@@ -49,7 +49,7 @@ export class PrismaSnacksRepository implements SnacksRepository{
 		const countSnacks = await prisma.snack.count({
 			where: {
 				user_id : userId,
-				on_diete: false,
+				on_diet: false,
 			}
 		})
 
@@ -59,7 +59,7 @@ export class PrismaSnacksRepository implements SnacksRepository{
 		const snacksOnDiet = await prisma.snack.findMany({
 			where: {
 				user_id : userId,
-				on_diete: true,
+				on_diet: true,
 			}
 		})
 
