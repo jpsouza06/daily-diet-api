@@ -26,7 +26,7 @@ model Snack {
   name        String
   description String?
   date_time   DateTime @default(now())
-  on_diete    Boolean
+  on_diet     Boolean
   created_at  DateTime @default(now())
   updated_at  DateTime @updatedAt
 
