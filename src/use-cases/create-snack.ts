@@ -7,7 +7,7 @@ interface CreateSnackUseCaseRequest {
    name: string;
    description: string;
    dateTime: Date;
-   onDiete: boolean;
+   onDiet: boolean;
    userId: string
 }
 
@@ -25,7 +25,7 @@ export class CreateSnackUseCase {
 		name,
 		description,
 		dateTime,
-		onDiete,
+		onDiet,
 		userId
 	}: CreateSnackUseCaseRequest): Promise<CreateSnackUseCaseResponse> {
 		const user = await this.usersRepository.findById(userId)
@@ -38,7 +38,7 @@ export class CreateSnackUseCase {
 			name,
 			description,
 			date_time: dateTime,
-			on_diete: onDiete,
+			on_diet: onDiet,
 			user_id: userId
 		})
 
