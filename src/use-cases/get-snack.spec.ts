@@ -18,7 +18,7 @@ describe('Get Snack Use Case', () => {
 			name: 'snack',
 			description: 'Snack',
 			date_time: new Date(),
-			on_diete: true,
+			on_diet: true,
 			user_id: '12345'
 		})
 

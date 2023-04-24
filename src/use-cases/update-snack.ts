@@ -37,7 +37,7 @@ export class UpdateSnackUseCase {
 			name,
 			description,
 			date_time: dateTime,
-			on_diete: onDiet
+			on_diet: onDiet
 		}
 
 		await this.snacksRepository.save(snack)
