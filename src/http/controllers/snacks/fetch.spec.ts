@@ -5,7 +5,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { CreateAndAuthenticaUser } from '@/utils/test/create-and-authenticate-user'
 import { prisma } from '@/lib/prisma'
 
-describe('Get Snack (e2e)', () => {
+describe('Fetch Snack (e2e)', () => {
 	beforeAll(async () => {
 		await app.ready()
 	})
@@ -14,12 +14,12 @@ describe('Get Snack (e2e)', () => {
 		await app.close()   
 	})
    
-	it('should be able to get a snack', async () => {
+	it('should be able to fetch snacks by user', async () => {
 		const { token, user } = await CreateAndAuthenticaUser(app)
 
-		const snack = await prisma.snack.create({
+		await prisma.snack.create({
 			data: {
-				name: 'Snack',
+				name: 'Snack-01',
 				description: 'Snack', 
 				date_time: new Date(), 
 				on_diet: true,
@@ -27,10 +27,29 @@ describe('Get Snack (e2e)', () => {
 			}
 		})
 
+		await prisma.snack.create({
+			data: {
+				name: 'Snack-02',
+				description: 'Snack',  
+				date_time: new Date(),
+				on_diet: true,
+				user_id: user.id  
+			}
+		})
+
 		const response = await request(app.server)
-			.get(`/snacks/${snack.id}`)
+			.get(`/snacks/${user.id}`)
 			.set('Authorization', `Bearer ${token}`)
-			.send() 
+			.send()      
 		expect(response.statusCode).toEqual(200)
+		expect(response.body.snacks).toHaveLength(1)
+		expect(response.body.snacks).toEqual([
+			expect.objectContaining({
+				name: 'Snack-01',
+			}),
+			expect.objectContaining({
+				name: 'Snack-02',
+			})
+		])
 	})
 })

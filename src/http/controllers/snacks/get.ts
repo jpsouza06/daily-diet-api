@@ -15,5 +15,5 @@ export async function get(request: FastifyRequest, reply: FastifyReply) {
 		snackId
 	})
 
-	return reply.status(201).send()
+	return reply.status(200).send()
 }
