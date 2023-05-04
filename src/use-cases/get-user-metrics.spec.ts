@@ -23,7 +23,7 @@ describe('Get User Metrics Use Case', () => {
 			name: 'snack',
 			description: 'Snack',
 			date_time: new Date(),
-			on_diete: true,
+			on_diet: true,
 			user_id: '12345'
 		})
 
@@ -36,7 +36,7 @@ describe('Get User Metrics Use Case', () => {
 			name: 'snack',
 			description: 'Snack',
 			date_time: new Date(),
-			on_diete: true,
+			on_diet: true,
 			user_id: '12345'
 		})
       
@@ -47,7 +47,7 @@ describe('Get User Metrics Use Case', () => {
 			name: 'snack',
 			description: 'Snack',
 			date_time: new Date(),
-			on_diete: false,
+			on_diet: false,
 			user_id: '12345'
 		})
       
@@ -58,7 +58,7 @@ describe('Get User Metrics Use Case', () => {
 			name: 'snack',
 			description: 'Snack',
 			date_time: new Date(),
-			on_diete: true,
+			on_diet: true,
 			user_id: '12345'
 		})
 

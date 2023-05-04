@@ -24,7 +24,7 @@ export class UpdateSnackUseCase {
 		name,
 		description,
 		dateTime,
-		onDiet,
+		onDiet
 	}: UpdateSnackUseCaseRequest): Promise<UpdateSnackUseCaseResponse> {
 		let snack = await this.snacksRepository.findById(snackId)
 

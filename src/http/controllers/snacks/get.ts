@@ -3,11 +3,11 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 
 export async function get(request: FastifyRequest, reply: FastifyReply) {
-	const registerParamsSchema = z.object({
+	const getSnackParamsSchema = z.object({
 		snackId: z.string().uuid()
 	})
 
-	const { snackId } = registerParamsSchema.parse(request.params)
+	const { snackId } = getSnackParamsSchema.parse(request.params)
 	
 	const createUseCase = makeGetSnackUseCase()
 	

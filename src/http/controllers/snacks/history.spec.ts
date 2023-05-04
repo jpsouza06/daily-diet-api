@@ -17,38 +17,35 @@ describe('Fetch Snack (e2e)', () => {
 	it('should be able to fetch snacks by user', async () => {
 		const { token, user } = await CreateAndAuthenticaUser(app)
 
-		await prisma.snack.create({
-			data: {
-				name: 'Snack-01',
-				description: 'Snack', 
-				date_time: new Date(), 
-				on_diet: true,
-				user_id: user.id  
-			}
+		await prisma.snack.createMany({
+			data: [
+				{
+					name: 'Snack-01',
+					on_diet: true,
+					user_id: user.id  
+				},
+				{
+					name: 'Snack-02',
+					on_diet: true,
+					user_id: user.id  
+				}
+			]
 		})
 
-		await prisma.snack.create({
-			data: {
-				name: 'Snack-02',
-				description: 'Snack',  
-				date_time: new Date(),
-				on_diet: true,
-				user_id: user.id  
-			}
-		})
 
 		const response = await request(app.server)
-			.get(`/snacks/${user.id}`)
+			.get('/snacks/history')
 			.set('Authorization', `Bearer ${token}`)
-			.send()      
+			.send()   
+		
 		expect(response.statusCode).toEqual(200)
-		expect(response.body.snacks).toHaveLength(1)
+		expect(response.body.snacks).toHaveLength(2)
 		expect(response.body.snacks).toEqual([
 			expect.objectContaining({
-				name: 'Snack-01',
+				user_id: user.id,
 			}),
 			expect.objectContaining({
-				name: 'Snack-02',
+				user_id: user.id,
 			})
 		])
 	})

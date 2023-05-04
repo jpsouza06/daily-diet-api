@@ -3,13 +3,13 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 
 export async function create(request: FastifyRequest, reply: FastifyReply) {
-	const registerBodySchema = z.object({
+	const createSnackBodySchema = z.object({
 		name: z.string(),
 		description: z.string(),
 		dateTime: z.coerce.date(),
 		onDiet: z.boolean().default(false),
 	})
-	const { name, description, dateTime, onDiet } = registerBodySchema.parse(request.body)
+	const { name, description, dateTime, onDiet } = createSnackBodySchema.parse(request.body)
 	
 	const createUseCase = makeCreateSnackUseCase()
 	

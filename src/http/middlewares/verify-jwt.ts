@@ -5,7 +5,6 @@ export async function verifyJwt(
 	reply: FastifyReply
 ) {
 	try {
-		console.log(request.headers)
 		await request.jwtVerify()
 		
 	} catch (err) {
