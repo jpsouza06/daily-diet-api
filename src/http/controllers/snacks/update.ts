@@ -26,7 +26,7 @@ export async function update(request: FastifyRequest, reply: FastifyReply) {
 		onDiet,
 	})
 
-	return reply.status(200).send({
+	return reply.status(201).send({
 		snack
 	})
 }

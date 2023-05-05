@@ -5,7 +5,7 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { CreateAndAuthenticaUser } from '@/utils/test/create-and-authenticate-user'
 import { prisma } from '@/lib/prisma'
 
-describe('Update Snack (e2e)', () => {
+describe('Delete Snack (e2e)', () => {
 	beforeAll(async () => {
 		await app.ready()
 	})
@@ -14,7 +14,7 @@ describe('Update Snack (e2e)', () => {
 		await app.close()   
 	})
    
-	it('should be able to update a snack', async () => {
+	it('should be able to delete a snack', async () => {
 		const { token, user } = await CreateAndAuthenticaUser(app)
 
 		const snack = await prisma.snack.create({
@@ -28,15 +28,10 @@ describe('Update Snack (e2e)', () => {
 		})
 
 		const response = await request(app.server)
-			.put(`/snacks/${snack.id}`)
+			.delete(`/snacks/${snack.id}`)
 			.set('Authorization', `Bearer ${token}`)
-			.send({
-				name: 'Snack1',
-				description: 'Snack1', 
-				dateTime: new Date(), 
-				onDiet: false,
-			})
+			.send()
       
-		expect(response.statusCode).toEqual(201)
+		expect(response.statusCode).toEqual(200)
 	})
 })

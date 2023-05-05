@@ -83,6 +83,7 @@ export class PrismaSnacksRepository implements SnacksRepository{
 		return snack
 	}
 	async save(data: Snack) {
+
 		const snack = await prisma.snack.update({
 			where: {
 				id: data.id
@@ -92,10 +93,10 @@ export class PrismaSnacksRepository implements SnacksRepository{
 
 		return snack
 	}
-	async delete(data: Snack) {
+	async delete(id: string) {
 		const snack = await prisma.snack.delete({
 			where: {
-				id: data.id
+				id
 			}
 		}) 
 

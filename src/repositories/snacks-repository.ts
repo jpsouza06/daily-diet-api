@@ -9,5 +9,5 @@ export interface SnacksRepository {
    countByUserId(userId : string): Promise<number>
    create(data: Prisma.SnackUncheckedCreateInput): Promise<Snack>
    save(data: Snack): Promise<Snack>
-   delete(data: Snack): Promise<Snack> 
+   delete(id: string): Promise<Snack> 
 }
