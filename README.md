@@ -4,7 +4,7 @@ Daily Diet Api
 
 ## RFs
 - [x]  Deve ser possível criar um usuário;
-- [ ] Deve ser possível identificar o usuário entre as requisiçoes;
+- [x] Deve ser possível identificar o usuário entre as requisiçoes;
 
 - [x]  Deve ser possível recuperar as métricas de um usuário:
 <ul>
