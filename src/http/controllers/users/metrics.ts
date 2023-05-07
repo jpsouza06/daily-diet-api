@@ -11,20 +11,12 @@ export async function metrics(request: FastifyRequest, reply: FastifyReply) {
 	
 	const getUserMetricsUseCase = makeGetUserMetricsUseCase()
 	
-	const {
-		bestSnackSequencePerDayWithinDiet, 
-		snacksCount, 
-		snacksOffDietCount, 
-		snacksOnDietCount
-	} = await getUserMetricsUseCase.execute({
+	const metrics = await getUserMetricsUseCase.execute({
 		userId: request.user.sign.sub,
 		page
 	})
 
 	return reply.status(200).send({
-		bestSnackSequencePerDayWithinDiet, 
-		snacksCount, 
-		snacksOffDietCount, 
-		snacksOnDietCount
+		metrics
 	})
 }

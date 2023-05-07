@@ -10,12 +10,14 @@ export function getBestSnackSequencePerDayWithinDiet(snacksOnDiet: Snack[]) {
 	let lastDate = new Date()
 
 	for(let i = 0; i < snacksOnDiet.length; i++) {
+		
 		if (i === 0) {
 			sequence = 1
+			bestSequence = 1
 			lastDate = snacksOnDiet[i].date_time
 			continue
 		}
-
+		console.log(snacksOnDiet[i].date_time)
 		const diferenceInDaysBetweenCurrentAndLastDate =
          dayjs(snacksOnDiet[i].date_time).diff(lastDate, 'day')
 
@@ -37,6 +39,6 @@ export function getBestSnackSequencePerDayWithinDiet(snacksOnDiet: Snack[]) {
 
 		lastDate = snacksOnDiet[i].date_time
 	}
-   
+	
 	return bestSequence
 }
